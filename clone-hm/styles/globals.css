@@ -5,3 +5,11 @@
 html {
   background-color: #faf9f8;
 }
+
+main {
+  max-width: 1008px;
+  margin-bottom: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 24px;
+}
