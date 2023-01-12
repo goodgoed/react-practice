@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar } from "./Navbar";
-import Sidebar from "../components/Sidebar";
-import Searchbar from "../components/Searchbar";
+import Sidebar from "./Sidebar";
+import Searchbar from "./Searchbar";
 
 const Header = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../public/logo.svg";
+import Logo from "../../public/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBagShopping, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { faUser, faHeart } from "@fortawesome/free-regular-svg-icons";

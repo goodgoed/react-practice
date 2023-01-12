@@ -15,8 +15,10 @@ const MenuItem = ({ item, isEnter, setIsEnter }) => {
         {item}
       </a>
       <div
-        className={`absolute left-0 z-2 min-h-[25rem] w-screen pt-5 ${
-          isEnter && isShow ? "block border-b-4 border-[#222]" : "hidden"
+        className={`absolute left-0 z-[100] min-h-[25rem] w-screen pt-5 ${
+          isEnter && isShow
+            ? "block border-b-4 border-[#222] bg-[#faf9f8]"
+            : "hidden"
         }`}
         onMouseEnter={() => setIsShow(true)}
       >
