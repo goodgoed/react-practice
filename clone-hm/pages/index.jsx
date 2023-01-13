@@ -6,6 +6,8 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Arrow from "../public/arrow.svg";
 import Info from "../public/info.svg";
 import New from "../components/Main/New";
+import Campaign from "../components/Main/Campaign";
+import Magazine from "../components/Main/Magazine";
 
 export default function Home() {
   return (
@@ -16,20 +18,14 @@ export default function Home() {
         </p>{" "}
       </div>
       <Trending />
-      <div className="relative w-full h-[672px] mt-5">
-        <Image
-          src="/campaign_1.jpg"
-          alt="campaign 1"
-          sizes="(max-width: 1024px) 70vw, 600px"
-          fill
-        />
+      <Campaign imageSrc="/campaign_1.jpg" buttonColor="#fff">
         <div
-          className="relative z-10 flex flex-col items-center justify-end pb-10 gap-3"
+          className="relative flex flex-col items-center justify-end pb-10 gap-3"
           style={{ width: "inherit", height: "inherit" }}
         >
           <h3 className="text-4xl tracking-widest">여유롭고 우아한 디테일</h3>
           <h5 className="text-sm">미니멀리즘 룩의 새롭고 흥미로운 시도</h5>
-          <button className="bg-white p-3 text-sm">
+          <button className={`py-2 px-2 text-sm bg-black text-white`}>
             <Link href="/">지금 쇼핑하기</Link>
           </button>
         </div>
@@ -45,7 +41,7 @@ export default function Home() {
             <Arrow />
           </span>
         </button>
-      </div>
+      </Campaign>
       <article className="cursor-pointer">
         <div className="w-full h-32 mt-6 bg-[#c9002e] relative">
           <div className="text-white w-full h-full flex flex-col justify-center items-center gap-1">
@@ -59,6 +55,23 @@ export default function Home() {
         </div>
       </article>
       <New />
+      <Campaign imageSrc="/campaign_2.webp">
+        <div className="absolute w-full text-center text-white top-[30%]">
+          <h3 className="text-[2rem]">Best Seller</h3>
+          <h4 className="text-[4rem] font-medium tracking-wider leading-[4.4rem]">
+            침실·욕실·주방 가득 채운 <br /> 추천 HOME 베스트셀러
+          </h4>
+          <p className="text-[1.5rem]">
+            일상을 함께하는 스타일리시한 베스트셀러 아이템을 모두 만나보세요!
+          </p>
+        </div>
+        <button
+          className={`absolute bottom-10 left-[45%] py-2 px-2 text-sm bg-black text-white`}
+        >
+          <Link href="/">지금 쇼핑하기</Link>
+        </button>
+      </Campaign>
+      <Magazine />
     </>
   );
 }

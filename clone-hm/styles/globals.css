@@ -6,6 +6,9 @@ html {
   background-color: #faf9f8;
   color: #222;
 }
+body {
+  overflow-x: hidden;
+}
 
 main {
   max-width: 1008px;
