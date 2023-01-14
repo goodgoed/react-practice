@@ -18,7 +18,10 @@ export const Navbar = () => {
         <Link href="/find" className="text-xs">
           매장 찾기
         </Link>
-        <FontAwesomeIcon icon={faEllipsis} className="ml-2 cursor-pointer" />
+        <FontAwesomeIcon
+          icon={faEllipsis}
+          className="ml-2 cursor-pointer hover:text-[#e50010]"
+        />
       </div>
       <div className="flex items-center">
         <Link href="/">

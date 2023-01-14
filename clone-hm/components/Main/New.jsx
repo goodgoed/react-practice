@@ -1,9 +1,11 @@
-import React from "react";
-import Image from "next/image";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import Product from "../Common/Product";
 
 const New = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const items = [
     {
       name: "여성",
@@ -68,11 +70,18 @@ const New = () => {
         <ul className="flex gap-3 mt-4">
           {items.map((item, index) => {
             return (
-              <li
-                key={index}
-                className=" rounded-full cursor-pointer border-[#222] border-[1px] py-2 px-4"
-              >
-                {item.name}
+              <li key={index}>
+                <button
+                  className={`rounded-full border-[#222] border-[1px] py-2 px-4 text-sm ${
+                    activeIndex === index
+                      ? "bg-red-500 border-none text-white"
+                      : ""
+                  }`}
+                  disabled={activeIndex === index ? true : false}
+                  onClick={() => setActiveIndex(index)}
+                >
+                  {item.name}
+                </button>
               </li>
             );
           })}
@@ -81,22 +90,13 @@ const New = () => {
       <ul className="relative flex mt-5 gap-8">
         {data["women"].map((item, index) => {
           return (
-            <li key={index} className="w-1/4">
-              <div className="">
-                <div className="relative w-fill h-[300px]">
-                  <Image
-                    src={item.photo}
-                    alt={item.photo}
-                    fill
-                    objectFit="cover"
-                  />
-                </div>
-                <div className="text-xs mt-3">
-                  <h3>{item.name}</h3>
-                  <h4>{item.price}</h4>
-                </div>
-              </div>
-            </li>
+            <div className="w-1/4" key={index}>
+              <Product
+                imageSrc={item.photo}
+                name={item.name}
+                price={item.price}
+              />
+            </div>
           );
         })}
         <button className="absolute left-[-50px] top-[45%]">

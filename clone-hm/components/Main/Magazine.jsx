@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Card from "./Card";
+import Card from "./MagazineCard";
 
 const Magazine = () => {
   const data = [
