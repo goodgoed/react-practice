@@ -6,7 +6,7 @@ const Product = ({ imageSrc, name, price }) => {
 
   return (
     <>
-      <div className="relative w-fill h-[300px]">
+      <div className="relative w-full h-[300px]">
         <Image src={imageSrc} alt={imageSrc} fill />
         <button
           onClick={() => setIsFavorite((prev) => !prev)}

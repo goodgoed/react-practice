@@ -1,8 +1,8 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React, { useState } from "react";
+import TrendItem from "../Common/TrendItem";
+import Carousel from "../Common/Carousel";
 
-//TODO: Create a carousel
+//TODO: 1. Componentize single item 2. Create a carousel
 const Trending = () => {
   const items = [
     {
@@ -36,36 +36,27 @@ const Trending = () => {
       image: "trending_6.png",
     },
     {
-      type: "여성",
+      type: "남성",
       category: "가디건 & 풀오버",
       image: "trending_7.png",
     },
   ];
 
   return (
-    <div className="w-full flex flex-col justify-start mt-8">
+    <div className="relative flex flex-col justify-start mt-8">
       <span className="text-xl mb-4">트렌드 카테고리</span>
-      <div className="w-full flex overflow-hidden gap-4">
+      <Carousel totalLength={items.length}>
         {items.map((item, index) => {
           return (
-            <Link href="/" key={index}>
-              <div>
-                <Image
-                  src={`/${item.image}`}
-                  alt={item.image}
-                  width={200}
-                  height={200}
-                  className="mb-4"
-                />
-                <div className="flex flex-col items-center">
-                  <h2 className="text-sm">{item.type}</h2>
-                  <p className="text-sm">{item.category}</p>
-                </div>
-              </div>
-            </Link>
+            <TrendItem
+              key={index}
+              imageSrc={item.image}
+              type={item.type}
+              category={item.category}
+            />
           );
         })}
-      </div>
+      </Carousel>
     </div>
   );
 };

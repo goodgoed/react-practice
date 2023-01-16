@@ -4,7 +4,9 @@
 
 html {
   background-color: #faf9f8;
+  /* background-color: rgb(182, 137, 137); */
   color: #222;
+  box-sizing: border-box;
 }
 body {
   overflow-x: hidden;
