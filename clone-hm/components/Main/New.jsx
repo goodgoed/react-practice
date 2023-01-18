@@ -44,34 +44,44 @@ const New = () => {
         price: "₩49,900",
       },
       {
-        photo: "/new_1.jpeg",
-        name: "텍스쳐 슬링백 슈즈",
+        photo: "/new_2.jpeg",
+        name: "디자인 스웨트셔츠",
+        price: "₩19,900",
+      },
+      {
+        photo: "/new_3.jpeg",
+        name: "오버사이즈 프린트 티셔츠",
+        price: "₩39,900",
+      },
+      {
+        photo: "/new_4.jpeg",
+        name: "슈즈",
         price: "₩49,900",
       },
       {
-        photo: "/new_1.jpeg",
-        name: "텍스쳐 슬링백 슈즈",
+        photo: "/new_5.jpeg",
+        name: "슬링백",
         price: "₩49,900",
+      },
+      {
+        photo: "/new_4.jpeg",
+        name: "슈즈",
+        price: "₩49,900",
+      },
+      {
+        photo: "/new_3.jpeg",
+        name: "오버사이즈 프린트 티셔츠",
+        price: "₩39,900",
       },
       {
         photo: "/new_2.jpeg",
-        name: "텍스쳐 슬링백 슈즈",
-        price: "₩49,900",
+        name: "디자인 스웨트셔츠",
+        price: "₩19,900",
       },
       {
-        photo: "/new_1.jpeg",
-        name: "텍스쳐 슬링백 슈즈",
-        price: "₩49,900",
-      },
-      {
-        photo: "/new_1.jpeg",
-        name: "텍스쳐 슬링백 슈즈",
-        price: "₩49,900",
-      },
-      {
-        photo: "/new_1.jpeg",
-        name: "텍스쳐 슬링백 슈즈",
-        price: "₩49,900",
+        photo: "/new_2.jpeg",
+        name: "디자인 스웨트셔츠",
+        price: "₩19,900",
       },
     ],
     men: [],
@@ -105,7 +115,7 @@ const New = () => {
           })}
         </ul>
       </div>
-      <InfiniteCarousel data={data["women"]} />
+      <InfiniteCarousel incomingData={data["women"]} />
     </div>
   );
 };

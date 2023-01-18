@@ -3,24 +3,84 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Product from "./NewProduct";
 
-const InfiniteCarousel = ({ data }) => {
+const InfiniteCarousel = ({ incomingData }) => {
   const carousel = useRef(null);
-  const totalLength = data.length;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [containerWidth, setContainerWidth] = useState(0);
-  const itemPerIndex = 4;
-  const lastIndex = Math.ceil(totalLength / itemPerIndex) - 1;
-  const itemWidth = containerWidth / itemPerIndex;
-  const remainedItem = totalLength % itemPerIndex;
+  const [transition, setTransition] = useState("");
+  const [nextMoveSize, setNextMoveSize] = useState(0);
 
-  let nextMoveSize =
-    currentIndex === lastIndex
-      ? remainedItem * itemWidth
-      : containerWidth * currentIndex;
+  const totalItemAmount = incomingData.length;
+  const itemPerIndex = 4;
+  const data = modifyData(incomingData);
+  const startPosition = containerWidth;
+  const itemWidth = containerWidth / itemPerIndex;
+  const listWidth = itemWidth * data.length;
+  const lastIndex = Math.ceil(totalItemAmount / itemPerIndex) - 1;
+  const remainedItem = totalItemAmount % itemPerIndex;
 
   useEffect(() => {
     setContainerWidth(carousel.current.clientWidth);
+    setNextMoveSize(carousel.current.clientWidth);
   }, []);
+
+  const getIndex = (index) => {
+    if (index <= lastIndex && index >= 0) return index;
+
+    return index >= lastIndex ? 0 : lastIndex;
+  };
+
+  function modifyData(data) {
+    let index = 0;
+    const ret = [...data];
+    while (index < itemPerIndex) {
+      ret.unshift(data[data.length - 1 - index]);
+      ret.push(data[index]);
+      index++;
+    }
+    return ret;
+  }
+
+  const handleClick = (dir) => {
+    let lastSlidePosition = 0;
+    switch (dir) {
+      case "left":
+        setCurrentIndex(getIndex(currentIndex - 1));
+        setNextMoveSize((prev) => {
+          return currentIndex === lastIndex
+            ? prev - remainedItem * itemWidth
+            : prev - containerWidth;
+        });
+
+        if (currentIndex === 0) {
+          lastSlidePosition =
+            startPosition +
+            containerWidth * (lastIndex - 1) +
+            remainedItem * itemWidth;
+          setTimeout(() => {
+            setTransition("");
+            setNextMoveSize(lastSlidePosition);
+          }, 600);
+        }
+        break;
+      case "right":
+        setCurrentIndex(getIndex(currentIndex + 1));
+        setNextMoveSize((prev) => {
+          return currentIndex === lastIndex - 1
+            ? prev + remainedItem * itemWidth
+            : prev + containerWidth;
+        });
+        if (currentIndex === lastIndex) {
+          lastSlidePosition = startPosition;
+          setTimeout(() => {
+            setTransition("");
+            setNextMoveSize(lastSlidePosition);
+          }, 600);
+        }
+        break;
+    }
+    setTransition("transition-all ease-in-out duration-500");
+  };
 
   return (
     <>
@@ -28,7 +88,7 @@ const InfiniteCarousel = ({ data }) => {
         <button
           className="absolute left-[-50px] top-[45%]"
           onClick={() => {
-            setCurrentIndex((prev) => prev - 1);
+            handleClick("left");
           }}
         >
           <FontAwesomeIcon
@@ -39,10 +99,10 @@ const InfiniteCarousel = ({ data }) => {
 
         <div className="overflow-hidden mx-[-12px]" ref={carousel}>
           <div
-            className={`transition-all ease-in-out duration-500`}
+            className={`${transition}`}
             style={{
-              translate: currentIndex === 0 ? "0px" : `-${nextMoveSize}px`,
-              width: `${lastIndex + 1}00%`,
+              translate: `-${nextMoveSize}px`,
+              width: listWidth || "5000px",
             }}
           >
             {data.map((item, index) => {
@@ -65,7 +125,7 @@ const InfiniteCarousel = ({ data }) => {
         <button
           className="absolute right-[-50px] top-[45%]"
           onClick={() => {
-            setCurrentIndex((prev) => prev + 1);
+            handleClick("right");
           }}
         >
           <FontAwesomeIcon
