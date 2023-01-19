@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Info from "../../public/info.svg";
+import Modal from "../Common/Modal";
 
 //TODO: Create a modal
 const Banner = () => {
+  const [show, setShow] = useState(false);
   return (
-    <article className="cursor-pointer">
+    <article className="cursor-pointer" onClick={() => setShow(true)}>
       <div className="w-full h-32 mt-6 bg-[#c9002e] relative">
         <div className="text-white w-full h-full flex flex-col justify-center items-center gap-1">
           <h3 className="text-3xl font-medium">Final Sale</h3>
@@ -15,6 +17,7 @@ const Banner = () => {
           <Info className="fill-white" />
         </button>
       </div>
+      {show ? <Modal show={show} onClose={() => setShow(false)} /> : null}
     </article>
   );
 };
