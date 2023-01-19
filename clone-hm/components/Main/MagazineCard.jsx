@@ -7,7 +7,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 const Card = ({ imageSrc, title }) => {
   return (
     <article className="w-full">
-      <div className="relative w-full h-[200px]">
+      <div className="relative w-full lg:h-[200px] pt-[60%]">
         <Image src={imageSrc} alt={imageSrc} fill />
       </div>
       <div className="bg-white flex flex-1 flex-col place-content-between p-[16px]">

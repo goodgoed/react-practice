@@ -25,7 +25,7 @@ const Magazine = () => {
       <Link href="/" className="underline text-sm">
         READ H&M MAGAZINE
       </Link>
-      <div className="flex gap-4 mt-12">
+      <div className="flex gap-4 mt-12 flex-col lg:flex-row">
         {data.map((item, index) => {
           return (
             <Card key={index} imageSrc={item.imageSrc} title={item.title} />

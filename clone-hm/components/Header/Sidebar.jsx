@@ -1,5 +1,7 @@
 import { useState } from "react";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBagShopping, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
 const List = ({ title, children }) => {
   return (
@@ -185,7 +187,7 @@ const Sidebar = () => {
   return (
     <>
       <ul
-        className="flex flex-row gap-6 ml-[10rem] text-sm"
+        className="flex gap-6 text-sm justify-center items-center"
         onMouseLeave={() => setIsEnter(false)}
       >
         {menu.map((item, index) => {

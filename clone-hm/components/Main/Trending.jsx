@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TrendItem from "../Common/TrendItem";
+
 import Carousel from "../Common/Carousel";
 
 //TODO: 1. Componentize single item 2. Create a carousel
@@ -45,18 +45,7 @@ const Trending = () => {
   return (
     <div className="relative flex flex-col justify-start mt-8">
       <span className="text-xl mb-4">트렌드 카테고리</span>
-      <Carousel totalLength={items.length}>
-        {items.map((item, index) => {
-          return (
-            <TrendItem
-              key={index}
-              imageSrc={item.image}
-              type={item.type}
-              category={item.category}
-            />
-          );
-        })}
-      </Carousel>
+      <Carousel items={items} />
     </div>
   );
 };

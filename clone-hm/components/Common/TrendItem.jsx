@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const TrendItem = ({ imageSrc, type, category }) => {
+const TrendItem = ({ imageSrc, type, category, width }) => {
   return (
-    <div className="relative w-[164px] float-left">
+    <div className="relative float-left" style={{ width: width }}>
       <Link href="/" className="relative w-full flex flex-col px-3 ">
         <div className="relative w-full pt-[100%]">
           <Image

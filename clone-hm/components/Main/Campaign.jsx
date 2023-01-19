@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Campaign = ({ imageSrc, children }) => {
   return (
-    <div className="relative w-full h-[672px] mt-5 ">
+    <div className="relative w-full pt-[100%] lg:pt-[66.66%] mt-5 ">
       <Image
         src={imageSrc}
         alt="campaign picture"

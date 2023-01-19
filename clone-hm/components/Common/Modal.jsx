@@ -31,7 +31,7 @@ const Modal = ({ onClose, show }) => {
         className="fixed top-0 bottom-0 left-0 right-0 bg-[#00000080] flex justify-center items-center"
         onClick={handleClick}
       >
-        <div className={`bg-[#faf9f8] animate-appear`}>
+        <div className={`bg-[#faf9f8] animate-appear-modal`}>
           <div className="py-6 px-12 w-[530px]">
             <div className="relative text-center mb-6">
               <h1 className="text-xl">설맞이 한정 특가 쇼핑 혜택</h1>

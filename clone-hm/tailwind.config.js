@@ -7,13 +7,23 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
-        appear: {
+        "appear-modal": {
           "0%": { transform: "translateY(500px)" },
           "100%": { transform: "translateY(0px)" },
         },
+        "appear-sidebar": {
+          "0%": { transform: "translateX(-300px)" },
+          "100%": { transform: "translateX(0px)" },
+        },
+        "exit-sidebar": {
+          "0%": { transform: "translateX(0px)" },
+          "100%": { transform: "translateX(-400px)" },
+        },
       },
       animation: {
-        appear: "appear 0.3s ease-in-out",
+        "appear-modal": "appear-modal 0.3s ease-in-out",
+        "appear-sidebar": "appear-sidebar 0.3s ease-in-out",
+        "exit-sidebar": "exit-sidebar 0.3s ease-in-out",
       },
     },
   },

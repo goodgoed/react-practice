@@ -20,14 +20,16 @@ export default function Home() {
       <Trending />
       <Campaign imageSrc="/campaign_1.jpg" buttonColor="#fff">
         <div
-          className="relative flex flex-col items-center justify-end pb-10 gap-3"
+          className="absolute inset-0 "
           style={{ width: "inherit", height: "inherit" }}
         >
-          <h3 className="text-4xl tracking-widest">여유롭고 우아한 디테일</h3>
-          <h5 className="text-sm">미니멀리즘 룩의 새롭고 흥미로운 시도</h5>
-          <button className={`py-2 px-2 text-sm bg-black text-white`}>
-            <Link href="/">지금 쇼핑하기</Link>
-          </button>
+          <div className="relative top-[70%] flex flex-col items-center justify-end pb-10 gap-3">
+            <h3 className="text-4xl tracking-widest">여유롭고 우아한 디테일</h3>
+            <h5 className="text-sm">미니멀리즘 룩의 새롭고 흥미로운 시도</h5>
+            <button className={`py-2 px-2 text-sm bg-black text-white`}>
+              <Link href="/">지금 쇼핑하기</Link>
+            </button>
+          </div>
         </div>
         <button>
           <div className="absolute z-10 right-0 top-1/2 flex flex-col items-start text-white bg-black py-3 px-3 rounded mr-2">
