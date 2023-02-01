@@ -1,14 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { User, Lock } from "react-feather";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../features/user/userSlice";
-import axios from "axios";
 
-const LoginForm = () => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-
+const LoginForm = ({ onSubmit }) => {
   const {
     register,
     formState: { errors },
@@ -16,61 +10,6 @@ const LoginForm = () => {
   } = useForm({
     mode: "onChange",
   });
-
-  async function validateUser(data) {
-    let username;
-    let jwt;
-    let res = await axios.post(
-      `${import.meta.env.VITE_API_BASE_URL}/api/auth/local`,
-      {
-        identifier: data.username,
-        password: data.password,
-      }
-    );
-    try {
-      username = data.username;
-      jwt = res.data.jwt;
-    } catch (err) {
-      console.log("There was an error: ", err);
-    }
-
-    return { username, jwt };
-  }
-
-  const onSubmit = (data) => {
-    axios
-      .post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/local`, {
-        identifier: data.username,
-        password: data.password,
-      })
-      .then((res) => {
-        try {
-          const username = data.username;
-          const jwt = res.data.jwt;
-
-          axios
-            .get(
-              `${import.meta.env.VITE_API_BASE_URL}/api/users/me?populate=role`,
-              {
-                headers: {
-                  Authorization: `Bearer ${jwt}`,
-                },
-              }
-            )
-            .then((res) => {
-              try {
-                const role = res.data.role.type;
-                dispatch(login(username, role, jwt));
-                console.log("Successfully Logged In!");
-              } catch (error) {
-                console.log("There was an error: ", error);
-              }
-            });
-        } catch (err) {
-          console.log("There was an error: ", err);
-        }
-      });
-  };
 
   return (
     <form

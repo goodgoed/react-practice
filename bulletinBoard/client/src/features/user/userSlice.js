@@ -15,12 +15,13 @@ const userSlice = createSlice({
       reducer(state, action) {
         state.user = action.payload;
       },
-      prepare(username, role, jwt) {
+      prepare(username, id, role, jwt) {
         return {
           payload: {
             username,
             jwt,
             role,
+            id,
             status: "idle",
           },
         };
@@ -32,14 +33,8 @@ const userSlice = createSlice({
         jwt: "",
       };
     },
-    changed(state, action) {
-      state.user = {
-        ...state.user,
-        status: action.payload,
-      };
-    },
   },
 });
 
 export const userReducer = userSlice.reducer;
-export const { login, logout, changed } = userSlice.actions;
+export const { login, logout } = userSlice.actions;

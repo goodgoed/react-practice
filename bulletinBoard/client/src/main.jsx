@@ -1,15 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Loginpage from "./routes/Loginpage";
-import RequiredAuth from "./routes/RequiredAuth";
-import Posts from "./routes/Posts";
-import Post from "./routes/PostDetails";
+import LoginFormContainer from "./routes/LoginFormContainer";
+import AlreadyLoggedIn from "./layout/AlreadyLoggedIn";
+import RequiredAuth from "./layout/RequiredAuth";
+import PostsContainer from "./routes/PostsContainer";
+import PostDetailsContainer from "./routes/PostDetailsContainer";
 import {
   createBrowserRouter,
   RouterProvider,
   Navigate,
-  redirect,
 } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./app/store";
@@ -18,7 +19,13 @@ import "./index.css";
 const router = createBrowserRouter([
   {
     path: "/login",
-    element: <Loginpage />,
+    element: <AlreadyLoggedIn />,
+    children: [
+      {
+        path: "",
+        element: <LoginFormContainer />,
+      },
+    ],
   },
   {
     path: "/posts",
@@ -26,11 +33,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Posts />,
+        element: <PostsContainer />,
       },
       {
         path: ":postId",
-        element: <Post />,
+        element: <PostDetailsContainer />,
       },
     ],
   },
@@ -40,11 +47,15 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <RouterProvider router={router} />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>
