@@ -22,7 +22,6 @@ const userSlice = createSlice({
             jwt,
             role,
             id,
-            status: "idle",
           },
         };
       },
